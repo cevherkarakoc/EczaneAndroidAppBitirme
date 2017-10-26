@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Eczane</string>
+    <string name="search_hint">Eczane arayın</string>
+    <string name="or">ya da</string>
+    <string name="find_nearest_phar">en yakın eczaneleri bul</string>
+    <string name="search">ara</string>
+    <string name="get_navigation">Yol Tarifi Al</string>
+</resources>

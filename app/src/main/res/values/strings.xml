@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">Eczane</string>
+    <string name="search_hint">Search a pharmacy</string>
+    <string name="or">or</string>
+    <string name="find_nearest_phar">find the nearest pharmacy</string>
+    <string name="search">search</string>
+    <string name="get_navigation">Get directions</string>
+
+
+</resources>
