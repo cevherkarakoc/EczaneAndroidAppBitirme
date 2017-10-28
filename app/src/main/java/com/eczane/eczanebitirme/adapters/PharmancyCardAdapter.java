@@ -17,28 +17,30 @@ import com.eczane.eczanebitirme.models.Pharmacy;
 
 import org.w3c.dom.Text;
 
+import java.util.ArrayList;
+
 /**
  * Created by cevhe on 22.10.2017.
  */
 
 public class PharmancyCardAdapter extends BaseAdapter {
-    Context context;
-    Pharmacy[] pharmacies;
+    private Context context;
+    private ArrayList<Pharmacy> pharmacies;
 
-    public PharmancyCardAdapter(@NonNull Context context, Pharmacy[] pharmacies) {
+    public PharmancyCardAdapter(@NonNull Context context, ArrayList<Pharmacy> pharmacies) {
         this.context = context;
         this.pharmacies = pharmacies;
     }
 
     @Override
     public int getCount() {
-        return pharmacies.length;
+        return pharmacies.size();
     }
 
     @Override
     public Pharmacy getItem(int position) {
         //şöyle de olabilir: public Object getItem(int position)
-        return pharmacies[position];
+        return pharmacies.get(position);
     }
 
     @Override
@@ -47,7 +49,7 @@ public class PharmancyCardAdapter extends BaseAdapter {
     }
 
 
-    class PharCardHolder {
+    private class PharCardHolder {
         TextView title;
         TextView zone;
         TextView phone;
@@ -78,13 +80,15 @@ public class PharmancyCardAdapter extends BaseAdapter {
 
 
 
-        Pharmacy p = pharmacies[position];
+        Pharmacy p = pharmacies.get(position);
         holder.title.setText(p.getTitle());
         holder.zone.setText(p.getDistrict().getName() + ", " + p.getProvince().getName());
         holder.phone.setText(p.getPhone());
 
         if(p.isSentry()) {
             holder.sentry.setVisibility(View.VISIBLE);
+        }else {
+            holder.sentry.setVisibility(View.INVISIBLE);
         }
 
         return card;
