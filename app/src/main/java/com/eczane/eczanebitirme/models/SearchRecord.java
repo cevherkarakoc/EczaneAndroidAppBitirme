@@ -4,9 +4,10 @@ import java.util.Calendar;
 import java.util.Date;
 
 /**
- * Created by cevhe on 31.10.2017.
+ * SearchRecord Model Object
+ *
+ * @author Cehver V. Karakoc
  */
-
 public class SearchRecord {
     private String key;
     private Date date;

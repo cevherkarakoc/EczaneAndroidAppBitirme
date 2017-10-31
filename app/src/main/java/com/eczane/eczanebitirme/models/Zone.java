@@ -1,9 +1,10 @@
 package com.eczane.eczanebitirme.models;
 
 /**
- * Created by cevhe on 22.10.2017.
+ * Zone Model Object
+ *
+ * @author Cehver V. Karakoc
  */
-
 public class Zone {
     private int id;
     private String name;

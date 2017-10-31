@@ -18,9 +18,8 @@ import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
 /**
- * Created by cevhe on 24.10.2017.
+ * @author Cehver V. Karakoc
  */
-
 public class PharmancyDetailFragment extends Fragment implements OnMapReadyCallback {
     Pharmacy pharmancy;
 
@@ -45,7 +44,7 @@ public class PharmancyDetailFragment extends Fragment implements OnMapReadyCallb
     public void onMapReady(GoogleMap googleMap) {
         // Add a marker in Sydney, Australia,
         // and move the map's camera to the same location.
-        LatLng point = new LatLng(pharmancy.getAddress().getX(), pharmancy.getAddress().getY());
+        LatLng point = new LatLng(pharmancy.getAddress().getLat(), pharmancy.getAddress().getLon());
         Marker marker = googleMap.addMarker(new MarkerOptions().position(point)
                 .title(pharmancy.getTitle()));
         marker.showInfoWindow();

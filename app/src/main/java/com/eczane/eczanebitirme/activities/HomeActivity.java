@@ -22,6 +22,9 @@ import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Set;
 
+/**
+ * @author Cehver V. Karakoc
+ */
 public class HomeActivity extends AppCompatActivity implements TextView.OnEditorActionListener {
     private EditText editTextSearch;
     Storage storage;

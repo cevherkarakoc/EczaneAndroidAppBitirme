@@ -14,9 +14,10 @@ import java.util.SortedSet;
 import java.util.TreeSet;
 
 /**
- * Created by cevhe on 29.10.2017.
+ * A helper for SharedPreferences
+ *
+ * @author Cehver V. Karakoc
  */
-
 public class Storage {
     private static final String LAST_SEARCHES = "last_searches";
 

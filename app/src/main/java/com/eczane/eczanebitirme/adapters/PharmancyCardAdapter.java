@@ -20,9 +20,10 @@ import org.w3c.dom.Text;
 import java.util.ArrayList;
 
 /**
- * Created by cevhe on 22.10.2017.
+ * Adapter for Pharmancy Cards
+ *
+ * @author Cehver V. Karakoc
  */
-
 public class PharmancyCardAdapter extends BaseAdapter {
     private Context context;
     private ArrayList<Pharmacy> pharmacies;
@@ -55,7 +56,7 @@ public class PharmancyCardAdapter extends BaseAdapter {
         TextView phone;
         ImageView sentry;
 
-        public PharCardHolder (View v) {
+        PharCardHolder (View v) {
             title = (TextView)v.findViewById(R.id.phar_title);
             zone = (TextView)v.findViewById(R.id.phar_zone);
             phone = (TextView)v.findViewById(R.id.phar_phone);

@@ -1,13 +1,11 @@
 package com.eczane.eczanebitirme.activities;
 
 import android.app.FragmentManager;
-import android.content.Context;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -20,12 +18,14 @@ import com.eczane.eczanebitirme.R;
 import com.eczane.eczanebitirme.adapters.PharmancyCardAdapter;
 import com.eczane.eczanebitirme.fragments.PharmancyDetailFragment;
 import com.eczane.eczanebitirme.helpers.GsonRequest;
-import com.eczane.eczanebitirme.models.Dummy;
 import com.eczane.eczanebitirme.models.Pharmacy;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 
+/**
+ * @author Cehver V. Karakoc
+ */
 public class ListViewActivity extends AppCompatActivity implements AdapterView.OnItemClickListener {
     FragmentManager fragmentManager;
     PharmancyCardAdapter adapter;
@@ -40,7 +40,7 @@ public class ListViewActivity extends AppCompatActivity implements AdapterView.O
 
         RequestQueue queue = Volley.newRequestQueue(this);
         Log.d("GSON","START");
-        GsonRequest<Pharmacy[]> req = new GsonRequest<Pharmacy[]>(
+        GsonRequest<Pharmacy[]> req = new GsonRequest<>(
                 Request.Method.GET,
                 pharURL,
                 Pharmacy[].class,
@@ -48,7 +48,7 @@ public class ListViewActivity extends AppCompatActivity implements AdapterView.O
                 createMyReqErrorListener()
         );
         queue.add(req);
-        pharmacies = new ArrayList<Pharmacy>();
+        pharmacies = new ArrayList<>();
         adapter = new PharmancyCardAdapter(this, pharmacies);
 
         pharList.setAdapter(adapter);

@@ -7,9 +7,10 @@ import java.lang.reflect.Type;
 import java.util.ArrayList;
 
 /**
- * Created by cevhe on 31.10.2017.
+ * Holder for Types
+ *
+ * @author Cehver V. Karakoc
  */
-
 class Typer {
     static final Type SEARCH_RECORD_ARRAYLIST = new TypeToken<ArrayList<SearchRecord>>(){}.getType();
 }

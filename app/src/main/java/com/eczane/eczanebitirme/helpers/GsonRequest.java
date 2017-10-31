@@ -13,9 +13,10 @@ import com.google.gson.JsonSyntaxException;
 import java.io.UnsupportedEncodingException;
 
 /**
- * Created by cevhe on 28.10.2017.
+ * Gson Request Handler
+ *
+ * @author Cehver V. Karakoc
  */
-
 public class GsonRequest<T> extends Request<T> {
     private final Class<T> className;
     private final Listener<T> listener;

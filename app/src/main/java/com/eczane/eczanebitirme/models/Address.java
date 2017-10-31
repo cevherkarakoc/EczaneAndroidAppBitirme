@@ -1,18 +1,27 @@
 package com.eczane.eczanebitirme.models;
 
 /**
- * Created by cevhe on 22.10.2017.
+ * Address Model Object
+ *
+ * @author Cehver V. Karakoc
  */
 
 public class Address {
     private String text;
-    private double x;
-    private double y;
+    private double lat;
+    private double lon;
 
-    public Address (String text, double x, double y) {
+    /**
+     * Constructor.
+     *
+     * @param text (required) Text version of the address
+     * @param lat (required) Latitude
+     * @param lon (required) Longitude
+     */
+    public Address (String text, double lat, double lon) {
         this.text = text;
-        this.x = x;
-        this.y = y;
+        this.lat = lat;
+        this.lon = lon;
     }
 
 
@@ -20,12 +29,12 @@ public class Address {
         return text;
     }
 
-    public double getX() {
-        return x;
+    public double getLat() {
+        return lat;
     }
 
-    public double getY() {
-        return y;
+    public double getLon() {
+        return lon;
     }
 
 }

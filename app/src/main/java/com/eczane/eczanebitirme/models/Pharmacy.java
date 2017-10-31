@@ -1,9 +1,10 @@
 package com.eczane.eczanebitirme.models;
 
 /**
- * Created by cevhe on 22.10.2017.
+ * Pharmancy Model Object
+ *
+ * @author Cehver V. Karakoc
  */
-
 public class Pharmacy {
     private String title;
     private String phone;
