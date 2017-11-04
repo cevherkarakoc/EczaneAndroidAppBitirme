@@ -1,10 +1,14 @@
 package com.eczane.eczanebitirme.fragments;
 
 import android.app.Fragment;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 import com.eczane.eczanebitirme.R;
@@ -20,7 +24,7 @@ import com.google.android.gms.maps.model.MarkerOptions;
 /**
  * @author Cehver V. Karakoc
  */
-public class PharmancyDetailFragment extends Fragment implements OnMapReadyCallback {
+public class PharmancyDetailFragment extends Fragment implements OnMapReadyCallback, View.OnClickListener {
     Pharmacy pharmancy;
 
     @Override
@@ -28,6 +32,8 @@ public class PharmancyDetailFragment extends Fragment implements OnMapReadyCallb
         View view = inflater.inflate(R.layout.fragments_pharmancy_detail, container, false);
 
         TextView pharTitle = (TextView) view.findViewById(R.id.pharTitle);
+        TextView pharAddress = (TextView) view.findViewById(R.id.pharAddress);
+        Button pharPhone = (Button) view.findViewById(R.id.pharPhone);
 
         MapView pharMap = (MapView) view.findViewById(R.id.pharMap);
 
@@ -36,6 +42,9 @@ public class PharmancyDetailFragment extends Fragment implements OnMapReadyCallb
         pharMap.getMapAsync(this);
 
         pharTitle.setText(pharmancy.getTitle());
+        pharAddress.setText(pharmancy.getAddress().getText());
+        pharPhone.setText(pharmancy.getPhone());
+        pharPhone.setOnClickListener(this);
 
         return view;
     }
@@ -55,5 +64,11 @@ public class PharmancyDetailFragment extends Fragment implements OnMapReadyCallb
 
     public void setPharmancy(Pharmacy pharmancy) {
         this.pharmancy = pharmancy;
+    }
+
+    public void onClick(View v) {
+        Intent callIntent = new Intent(Intent.ACTION_DIAL);
+        callIntent.setData(Uri.parse("tel:"+pharmancy.getPhone()));
+        startActivity(callIntent);
     }
 }

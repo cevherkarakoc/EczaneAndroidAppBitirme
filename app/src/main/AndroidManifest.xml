@@ -26,7 +26,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".activities.ListViewActivity"
-            android:parentActivityName=".activities.HomeActivity"></activity>
+            android:parentActivityName=".activities.HomeActivity" />
     </application>
 
 </manifest>
