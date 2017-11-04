@@ -6,4 +6,6 @@
     <string name="find_nearest_phar">en yakın eczaneleri bul</string>
     <string name="search">ara</string>
     <string name="get_navigation">Yol Tarifi Al</string>
+    <string name="address">Adres</string>
+    <string name="sentry_image_dec">Nöbetçi</string>
 </resources>

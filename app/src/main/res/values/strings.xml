@@ -5,6 +5,10 @@
     <string name="find_nearest_phar">find the nearest pharmacy</string>
     <string name="search">search</string>
     <string name="get_navigation">Get directions</string>
+    <string name="address">Address</string>
+    <string name="placeholder_text" translatable="false">Example</string>
+    <string name="placeholder_phone" translatable="false">+90 999 888 77 66</string>
+    <string name="sentry_image_dec">Sentry</string>
 
 
 </resources>
