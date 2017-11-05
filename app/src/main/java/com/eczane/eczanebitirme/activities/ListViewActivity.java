@@ -17,7 +17,8 @@ import com.android.volley.toolbox.Volley;
 import com.eczane.eczanebitirme.R;
 import com.eczane.eczanebitirme.adapters.PharmancyCardAdapter;
 import com.eczane.eczanebitirme.fragments.PharmancyDetailFragment;
-import com.eczane.eczanebitirme.helpers.GsonRequest;
+import com.eczane.eczanebitirme.helpers.HTTPRequest.GsonRequest;
+import com.eczane.eczanebitirme.helpers.HTTPRequest.RequestHandler;
 import com.eczane.eczanebitirme.models.Pharmacy;
 
 import java.util.ArrayList;
@@ -30,7 +31,6 @@ public class ListViewActivity extends AppCompatActivity implements AdapterView.O
     FragmentManager fragmentManager;
     PharmancyCardAdapter adapter;
     ArrayList<Pharmacy> pharmacies;
-    String pharURL = "http://php.ceveka.com/pharmancies.json";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,16 +38,12 @@ public class ListViewActivity extends AppCompatActivity implements AdapterView.O
         setContentView(R.layout.activity_list_view);
         ListView pharList = (ListView) findViewById(R.id.phar_list);
 
-        RequestQueue queue = Volley.newRequestQueue(this);
-        Log.d("GSON","START");
-        GsonRequest<Pharmacy[]> req = new GsonRequest<>(
-                Request.Method.GET,
-                pharURL,
-                Pharmacy[].class,
-                createMyReqSuccessListener(),
-                createMyReqErrorListener()
+        RequestHandler.fetchPharmanciesList(
+                this,
+                createSuccessListener(),
+                createErrorListener()
         );
-        queue.add(req);
+
         pharmacies = new ArrayList<>();
         adapter = new PharmancyCardAdapter(this, pharmacies);
 
@@ -65,11 +61,10 @@ public class ListViewActivity extends AppCompatActivity implements AdapterView.O
         fragmentManager.beginTransaction().add(R.id.rootLayout, pdFragment).addToBackStack("detail").commit();
     }
 
-    private Response.Listener<Pharmacy[]> createMyReqSuccessListener() {
+    private Response.Listener<Pharmacy[]> createSuccessListener() {
         return new Response.Listener<Pharmacy[]>() {
             @Override
             public void onResponse(Pharmacy[] response) {
-                Log.d("GSON","OK");
                 pharmacies.addAll(Arrays.asList(response));
                 adapter.notifyDataSetChanged();
             }
@@ -77,7 +72,7 @@ public class ListViewActivity extends AppCompatActivity implements AdapterView.O
     }
 
 
-    private Response.ErrorListener createMyReqErrorListener() {
+    private Response.ErrorListener createErrorListener() {
         return new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {

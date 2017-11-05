@@ -1,4 +1,4 @@
-package com.eczane.eczanebitirme.helpers;
+package com.eczane.eczanebitirme.helpers.HTTPRequest;
 
 import com.android.volley.NetworkResponse;
 import com.android.volley.ParseError;
@@ -22,7 +22,7 @@ public class GsonRequest<T> extends Request<T> {
     private final Listener<T> listener;
     private final Gson gson;
 
-    public GsonRequest(int method,
+    GsonRequest(int method,
                        String url,
                        Class<T> clazz,
                        Listener<T> listener,
