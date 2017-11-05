@@ -9,15 +9,11 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.Toast;
 
-import com.android.volley.Request;
-import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
-import com.android.volley.toolbox.Volley;
 import com.eczane.eczanebitirme.R;
-import com.eczane.eczanebitirme.adapters.PharmancyCardAdapter;
+import com.eczane.eczanebitirme.adapters.PharmancyCard.PharmancyCardAdapter;
 import com.eczane.eczanebitirme.fragments.PharmancyDetailFragment;
-import com.eczane.eczanebitirme.helpers.HTTPRequest.GsonRequest;
 import com.eczane.eczanebitirme.helpers.HTTPRequest.RequestHandler;
 import com.eczane.eczanebitirme.models.Pharmacy;
 

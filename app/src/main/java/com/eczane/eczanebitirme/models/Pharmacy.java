@@ -37,6 +37,10 @@ public class Pharmacy {
         return district;
     }
 
+    public String getZoneAsString() {
+        return this.getDistrict().getName() + ", " + this.getProvince().getName();
+    }
+
     public Address getAddress() {
         return address;
     }
