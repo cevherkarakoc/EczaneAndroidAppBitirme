@@ -14,12 +14,18 @@ class PharCardHolder {
     private TextView zone;
     private TextView phone;
     private ImageView sentry;
+    private View card;
 
     PharCardHolder (View v) {
+        card = v;
         title = (TextView)v.findViewById(R.id.phar_title);
         zone = (TextView)v.findViewById(R.id.phar_zone);
         phone = (TextView)v.findViewById(R.id.phar_phone);
         sentry = (ImageView)v.findViewById(R.id.phar_sentry);
+    }
+
+    View getCard() {
+        return card;
     }
 
     TextView getTitle() {

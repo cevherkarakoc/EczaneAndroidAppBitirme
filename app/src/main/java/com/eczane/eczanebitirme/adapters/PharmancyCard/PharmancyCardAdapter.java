@@ -3,6 +3,7 @@ package com.eczane.eczanebitirme.adapters.PharmancyCard;
 import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -47,12 +48,9 @@ public class PharmancyCardAdapter extends BaseAdapter {
     @NonNull
     @Override
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
-        setCardData(
-                initHolder(convertView, parent),
-                position
-        );
-
-        return convertView;
+        PharCardHolder holder = initHolder(convertView, parent);
+        setCardData(holder, position);
+        return holder.getCard();
     }
 
     private PharCardHolder initHolder(View card, ViewGroup parent){
@@ -73,5 +71,11 @@ public class PharmancyCardAdapter extends BaseAdapter {
         holder.getTitle().setText(p.getTitle());
         holder.getZone().setText(p.getZoneAsString());
         holder.getPhone().setText(p.getPhone());
+
+        if(p.isSentry()) {
+            holder.getSentry().setVisibility(View.VISIBLE);
+        }else {
+            holder.getSentry().setVisibility(View.INVISIBLE);
+        }
     }
 }
