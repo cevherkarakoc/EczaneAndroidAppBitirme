@@ -23,7 +23,6 @@ public class Storage {
 
     private SharedPreferences sharedPref;
     private Gson gson;
-    private final ArrayList<SearchRecord> defLastSearches = new ArrayList<>();
 
     public Storage (Context c, String name){
         sharedPref = c.getSharedPreferences(name,Context.MODE_PRIVATE);
@@ -33,7 +32,7 @@ public class Storage {
     public ArrayList<SearchRecord> getLastSearches() {
         String lastSearchesJson = sharedPref.getString(LAST_SEARCHES,null);
         if(lastSearchesJson == null){
-            return defLastSearches;
+            return new ArrayList<>();
         }
         return gson.fromJson(lastSearchesJson,Typer.SEARCH_RECORD_ARRAYLIST);
     }
