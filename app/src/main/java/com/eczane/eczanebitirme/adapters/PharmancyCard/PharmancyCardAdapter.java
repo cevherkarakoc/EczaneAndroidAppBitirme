@@ -3,7 +3,6 @@ package com.eczane.eczanebitirme.adapters.PharmancyCard;
 import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,8 +10,6 @@ import android.widget.BaseAdapter;
 
 import com.eczane.eczanebitirme.R;
 import com.eczane.eczanebitirme.models.Pharmacy;
-
-import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 
@@ -77,5 +74,10 @@ public class PharmancyCardAdapter extends BaseAdapter {
         }else {
             holder.getSentry().setVisibility(View.INVISIBLE);
         }
+    }
+
+    public void changeDataSet(ArrayList<Pharmacy> dataSet){
+        pharmacies = dataSet;
+        notifyDataSetChanged();
     }
 }

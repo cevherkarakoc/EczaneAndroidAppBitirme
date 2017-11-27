@@ -11,6 +11,7 @@
     <string name="sentry_image_dec">Sentry</string>
     <string name="call">Call</string>
     <string name="phone_number">phone</string>
+    <string name="only_sentry">Only Sentry</string>
 
 
 </resources>
