@@ -8,4 +8,6 @@
     <string name="get_navigation">Yol Tarifi Al</string>
     <string name="address">Adres</string>
     <string name="sentry_image_dec">Nöbetçi</string>
+    <string name="call">ara</string>
+    <string name="phone_number">telefon</string>
 </resources>

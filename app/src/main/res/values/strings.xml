@@ -9,6 +9,8 @@
     <string name="placeholder_text" translatable="false">Example</string>
     <string name="placeholder_phone" translatable="false">+90 999 888 77 66</string>
     <string name="sentry_image_dec">Sentry</string>
+    <string name="call">Call</string>
+    <string name="phone_number">phone</string>
 
 
 </resources>

@@ -1,11 +1,8 @@
 package com.eczane.eczanebitirme.activities;
 
-import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
@@ -18,9 +15,6 @@ import com.eczane.eczanebitirme.helpers.Storage;
 import com.eczane.eczanebitirme.models.SearchRecord;
 
 import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.Iterator;
-import java.util.Set;
 
 /**
  * @author Cehver V. Karakoc
@@ -28,6 +22,10 @@ import java.util.Set;
 public class HomeActivity extends AppCompatActivity implements TextView.OnEditorActionListener {
     private EditText editTextSearch;
     Storage storage;
+
+    //TODO: Son 3 arama yatay kaydırmalı olarak gösterilecek
+    //TODO: Favori Eczaneler görüntülecenek
+    //TODO: Konuma göre bulma eklenecek
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

@@ -1,8 +1,8 @@
 package com.eczane.eczanebitirme.activities;
 
 import android.app.FragmentManager;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
@@ -27,6 +27,8 @@ public class ListViewActivity extends AppCompatActivity implements AdapterView.O
     FragmentManager fragmentManager;
     PharmancyCardAdapter adapter;
     ArrayList<Pharmacy> pharmacies;
+
+    //TODO: Sadece nöbetçileri gösterme özelliği eklenecek
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
