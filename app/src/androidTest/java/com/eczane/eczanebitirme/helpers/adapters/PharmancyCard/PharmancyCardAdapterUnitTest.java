@@ -19,7 +19,7 @@ import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.assertThat;
 
 /**
- * UnitTest for Storage Class
+ * UnitTest for PharmancyCardAdapter Class
  *
  * @author Cehver V. Karakoc
  */
