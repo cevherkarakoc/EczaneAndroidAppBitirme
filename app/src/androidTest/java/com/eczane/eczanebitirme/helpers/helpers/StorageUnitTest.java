@@ -1,10 +1,10 @@
-package com.eczane.eczanebitirme.helpers;
+package com.eczane.eczanebitirme.helpers.helpers;
 
 import android.content.Context;
-import android.support.test.filters.SmallTest;
-import android.support.test.runner.AndroidJUnit4;
 import android.support.test.InstrumentationRegistry;
+import android.support.test.runner.AndroidJUnit4;
 
+import com.eczane.eczanebitirme.helpers.Storage;
 import com.eczane.eczanebitirme.models.SearchRecord;
 
 import org.junit.Before;

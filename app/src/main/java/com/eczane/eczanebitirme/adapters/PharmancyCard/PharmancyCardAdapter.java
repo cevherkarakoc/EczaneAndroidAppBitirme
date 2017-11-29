@@ -50,6 +50,11 @@ public class PharmancyCardAdapter extends BaseAdapter {
         return holder.getCard();
     }
 
+    public void changeDataSet(ArrayList<Pharmacy> dataSet){
+        pharmacies = dataSet;
+        notifyDataSetChanged();
+    }
+
     private PharCardHolder initHolder(View card, ViewGroup parent){
         PharCardHolder holder;
         if(card == null) {
@@ -74,10 +79,5 @@ public class PharmancyCardAdapter extends BaseAdapter {
         }else {
             holder.getSentry().setVisibility(View.INVISIBLE);
         }
-    }
-
-    public void changeDataSet(ArrayList<Pharmacy> dataSet){
-        pharmacies = dataSet;
-        notifyDataSetChanged();
     }
 }
