@@ -46,7 +46,7 @@ public class ListViewActivity extends AppCompatActivity implements AdapterView.O
         colorMoon = ContextCompat.getColor(this, R.color.colorMoon);
         colorGrey = ContextCompat.getColor(this, R.color.colorGrey);
 
-        fetchPharmanciesList();
+        fetchPharmaciesList();
 
         adapter = new PharmacyCardAdapter(this, pharmacies);
         this.setUpListView(adapter);
@@ -61,7 +61,7 @@ public class ListViewActivity extends AppCompatActivity implements AdapterView.O
 
         this.setUpSentryAction(menu.findItem(R.id.action_sentry));
 
-        return true;
+        return super.onCreateOptionsMenu(menu);
     }
 
     @Override
@@ -110,8 +110,8 @@ public class ListViewActivity extends AppCompatActivity implements AdapterView.O
         };
     }
 
-    private void fetchPharmanciesList(){
-        RequestHandler.fetchPharmanciesList(
+    private void fetchPharmaciesList(){
+        RequestHandler.fetchPharmaciesList(
                 this,
                 createSuccessListener(),
                 createErrorListener()

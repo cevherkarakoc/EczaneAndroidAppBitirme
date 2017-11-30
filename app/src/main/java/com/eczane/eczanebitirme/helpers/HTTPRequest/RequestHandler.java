@@ -14,7 +14,7 @@ import com.eczane.eczanebitirme.models.Pharmacy;
 public class RequestHandler {
     private static String pharURL = "http://php.ceveka.com/pharmancies.json";
 
-    public static void fetchPharmanciesList(Context context, Response.Listener<Pharmacy[]> successListener, Response.ErrorListener errorListener) {
+    public static void fetchPharmaciesList(Context context, Response.Listener<Pharmacy[]> successListener, Response.ErrorListener errorListener) {
         RequestQueue queue = Volley.newRequestQueue(context);
 
         GsonRequest<Pharmacy[]> req = new GsonRequest<>(
