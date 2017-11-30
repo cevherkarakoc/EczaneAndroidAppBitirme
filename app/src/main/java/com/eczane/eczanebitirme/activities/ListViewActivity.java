@@ -16,8 +16,8 @@ import android.widget.Toast;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.eczane.eczanebitirme.R;
-import com.eczane.eczanebitirme.adapters.PharmancyCard.PharmancyCardAdapter;
-import com.eczane.eczanebitirme.fragments.PharmancyDetailFragment;
+import com.eczane.eczanebitirme.adapters.PharmacyCard.PharmacyCardAdapter;
+import com.eczane.eczanebitirme.fragments.PharmacyDetailFragment;
 import com.eczane.eczanebitirme.helpers.HTTPRequest.RequestHandler;
 import com.eczane.eczanebitirme.models.Pharmacy;
 
@@ -28,14 +28,15 @@ import java.util.Arrays;
  * @author Cehver V. Karakoc
  */
 public class ListViewActivity extends AppCompatActivity implements AdapterView.OnItemClickListener {
-    FragmentManager fragmentManager;
-    PharmancyCardAdapter adapter;
-    ArrayList<Pharmacy> pharmacies;
-    ArrayList<Pharmacy> sentryPharmacies;
-    boolean filterSentry = false;
+    private FragmentManager fragmentManager;
+    private PharmacyCardAdapter adapter;
 
-    int colorMoon;
-    int colorGrey;
+    private ArrayList<Pharmacy> pharmacies = new ArrayList<>();
+    private ArrayList<Pharmacy> sentryPharmacies = new ArrayList<>();
+
+    private boolean filterSentry = false;
+    private int colorMoon;
+    private int colorGrey;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,21 +46,10 @@ public class ListViewActivity extends AppCompatActivity implements AdapterView.O
         colorMoon = ContextCompat.getColor(this, R.color.colorMoon);
         colorGrey = ContextCompat.getColor(this, R.color.colorGrey);
 
-        ListView pharList = (ListView) findViewById(R.id.phar_list);
+        fetchPharmanciesList();
 
-        RequestHandler.fetchPharmanciesList(
-                this,
-                createSuccessListener(),
-                createErrorListener()
-        );
-
-        pharmacies = new ArrayList<>();
-        sentryPharmacies = new ArrayList<>();
-
-        adapter = new PharmancyCardAdapter(this, pharmacies);
-
-        pharList.setAdapter(adapter);
-        pharList.setOnItemClickListener(this);
+        adapter = new PharmacyCardAdapter(this, pharmacies);
+        this.setUpListView(adapter);
 
         fragmentManager = getFragmentManager();
     }
@@ -69,7 +59,7 @@ public class ListViewActivity extends AppCompatActivity implements AdapterView.O
         MenuInflater menuInflater = getMenuInflater();
         menuInflater.inflate(R.menu.menu_list_view, menu);
 
-        menu.findItem(R.id.action_sentry).getIcon().setTint(colorGrey);
+        this.setUpSentryAction(menu.findItem(R.id.action_sentry));
 
         return true;
     }
@@ -79,11 +69,7 @@ public class ListViewActivity extends AppCompatActivity implements AdapterView.O
         switch (item.getItemId()) {
             case R.id.action_sentry:
                 filterSentry = !item.isChecked();
-
-                adapter.changeDataSet(filterSentry ? sentryPharmacies : pharmacies);
-                item.getIcon().setTint(filterSentry ? colorMoon : colorGrey);
-                item.setChecked(filterSentry);
-
+                this.setUpSentryAction(item);
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
@@ -92,9 +78,9 @@ public class ListViewActivity extends AppCompatActivity implements AdapterView.O
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-        PharmancyDetailFragment pdFragment = new PharmancyDetailFragment();
+        PharmacyDetailFragment pdFragment = new PharmacyDetailFragment();
         Pharmacy p = filterSentry ?  sentryPharmacies.get(position) : pharmacies.get(position);
-        pdFragment.setPharmancy(p);
+        pdFragment.setPharmacy(p);
 
         fragmentManager.beginTransaction().add(R.id.rootLayout, pdFragment).addToBackStack("detail").commit();
     }
@@ -114,7 +100,6 @@ public class ListViewActivity extends AppCompatActivity implements AdapterView.O
         };
     }
 
-
     private Response.ErrorListener createErrorListener() {
         return new Response.ErrorListener() {
             @Override
@@ -123,5 +108,25 @@ public class ListViewActivity extends AppCompatActivity implements AdapterView.O
                 Toast.makeText(ListViewActivity.this, "HATA",Toast.LENGTH_LONG).show();
             }
         };
+    }
+
+    private void fetchPharmanciesList(){
+        RequestHandler.fetchPharmanciesList(
+                this,
+                createSuccessListener(),
+                createErrorListener()
+        );
+    }
+
+    private void setUpListView(PharmacyCardAdapter _adapter) {
+        ListView pharList = (ListView) findViewById(R.id.phar_list);
+        pharList.setAdapter(_adapter);
+        pharList.setOnItemClickListener(this);
+    }
+
+    private void setUpSentryAction(MenuItem sentryActionButton){
+        adapter.changeDataSet(filterSentry ? sentryPharmacies : pharmacies);
+        sentryActionButton.getIcon().setTint(filterSentry ? colorMoon : colorGrey);
+        sentryActionButton.setChecked(filterSentry);
     }
 }

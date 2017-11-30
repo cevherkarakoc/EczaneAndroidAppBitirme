@@ -18,8 +18,8 @@ import java.util.Locale;
 /**
  * @author Cehver V. Karakoc
  */
-public class PharmancyDetailFragment extends Fragment implements View.OnClickListener {
-    private Pharmacy pharmancy;
+public class PharmacyDetailFragment extends Fragment implements View.OnClickListener {
+    private Pharmacy pharmacy;
     private Button pharCallButton;
     private Button pharMapButton;
 
@@ -35,9 +35,9 @@ public class PharmancyDetailFragment extends Fragment implements View.OnClickLis
         Button pharMapButton = (Button) view.findViewById(R.id.pharMapButton);
 
 
-        pharTitle.setText(pharmancy.getTitle());
-        pharPhone.setText(pharmancy.getPhone());
-        pharAddress.setText(pharmancy.getAddress().getText());
+        pharTitle.setText(pharmacy.getTitle());
+        pharPhone.setText(pharmacy.getPhone());
+        pharAddress.setText(pharmacy.getAddress().getText());
 
         pharCallButton.setOnClickListener(this);
         pharMapButton.setOnClickListener(this);
@@ -45,8 +45,8 @@ public class PharmancyDetailFragment extends Fragment implements View.OnClickLis
         return view;
     }
 
-    public void setPharmancy(Pharmacy pharmancy) {
-        this.pharmancy = pharmancy;
+    public void setPharmacy(Pharmacy pharmacy) {
+        this.pharmacy = pharmacy;
     }
 
     @Override
@@ -60,15 +60,15 @@ public class PharmancyDetailFragment extends Fragment implements View.OnClickLis
 
     private void startCall() {
         Intent callIntent = new Intent(Intent.ACTION_DIAL);
-        callIntent.setData(Uri.parse("tel:"+pharmancy.getPhone()));
+        callIntent.setData(Uri.parse("tel:"+pharmacy.getPhone()));
         startActivity(callIntent);
     }
 
     private void openMap() {
         String uri = String.format(
                 Locale.ENGLISH, "https://www.google.com/maps/dir/?api=1&destination=%f,%f",
-                pharmancy.getAddress().getLat(),
-                pharmancy.getAddress().getLon()
+                pharmacy.getAddress().getLat(),
+                pharmacy.getAddress().getLon()
         );
         Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(uri));
         startActivity(intent);

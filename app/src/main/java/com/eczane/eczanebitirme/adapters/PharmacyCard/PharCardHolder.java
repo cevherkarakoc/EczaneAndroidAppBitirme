@@ -1,4 +1,4 @@
-package com.eczane.eczanebitirme.adapters.PharmancyCard;
+package com.eczane.eczanebitirme.adapters.PharmacyCard;
 
 import android.view.View;
 import android.widget.ImageView;

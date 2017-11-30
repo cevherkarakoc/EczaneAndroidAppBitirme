@@ -23,20 +23,20 @@ import static org.hamcrest.core.IsNull.notNullValue;
 import static org.robolectric.util.FragmentTestUtil.startFragment;
 
 /**
- * UnitTest for PharmancyDetailFragment Class
+ * UnitTest for PharmacyDetailFragment Class
  *
  * @author Cehver V. Karakoc
  */
 
 @RunWith(RobolectricTestRunner.class)
-public class PharmancyDetailFragmentUnitTest {
-    private PharmancyDetailFragment fragment;
+public class PharmacyDetailFragmentUnitTest {
+    private PharmacyDetailFragment fragment;
     private View view;
     private Pharmacy pharmacy;
 
     @Before
     public void initFragment() {
-        fragment = new PharmancyDetailFragment();
+        fragment = new PharmacyDetailFragment();
 
         Zone testZone = new Zone(0, "Test Zone");
         Address testAddress = new Address("Test Address",13,7);
@@ -44,7 +44,7 @@ public class PharmancyDetailFragmentUnitTest {
         pharmacy = new Pharmacy
                 ("Test Title","000", testZone, testZone,testAddress);
 
-        fragment.setPharmancy(pharmacy);
+        fragment.setPharmacy(pharmacy);
         startFragment(fragment);
 
         view = fragment.getView();

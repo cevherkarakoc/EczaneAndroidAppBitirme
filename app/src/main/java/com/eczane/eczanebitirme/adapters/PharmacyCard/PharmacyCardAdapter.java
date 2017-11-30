@@ -1,4 +1,4 @@
-package com.eczane.eczanebitirme.adapters.PharmancyCard;
+package com.eczane.eczanebitirme.adapters.PharmacyCard;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
@@ -18,11 +18,11 @@ import java.util.ArrayList;
  *
  * @author Cehver V. Karakoc
  */
-public class PharmancyCardAdapter extends BaseAdapter {
+public class PharmacyCardAdapter extends BaseAdapter {
     private Context context;
     private ArrayList<Pharmacy> pharmacies;
 
-    public PharmancyCardAdapter(@NonNull Context context, ArrayList<Pharmacy> pharmacies) {
+    public PharmacyCardAdapter(@NonNull Context context, ArrayList<Pharmacy> pharmacies) {
         this.context = context;
         this.pharmacies = pharmacies;
     }

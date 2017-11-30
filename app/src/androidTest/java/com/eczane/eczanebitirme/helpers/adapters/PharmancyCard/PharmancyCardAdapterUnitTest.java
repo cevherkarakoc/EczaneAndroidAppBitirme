@@ -4,7 +4,7 @@ import android.content.Context;
 import android.support.test.InstrumentationRegistry;
 import android.support.test.runner.AndroidJUnit4;
 
-import com.eczane.eczanebitirme.adapters.PharmancyCard.PharmancyCardAdapter;
+import com.eczane.eczanebitirme.adapters.PharmacyCard.PharmacyCardAdapter;
 import com.eczane.eczanebitirme.models.Address;
 import com.eczane.eczanebitirme.models.Pharmacy;
 import com.eczane.eczanebitirme.models.Zone;
@@ -29,7 +29,7 @@ public class PharmancyCardAdapterUnitTest {
     private final String ONE = "ONE";
     private final String TWO = "TWO";
 
-    private PharmancyCardAdapter adapter;
+    private PharmacyCardAdapter adapter;
 
     @Before
     public void initAdapter(){
@@ -45,7 +45,7 @@ public class PharmancyCardAdapterUnitTest {
         pharmacies.add(pharmacyOne);
         pharmacies.add(pharmacyTwo);
 
-        adapter = new PharmancyCardAdapter(instrumentationCtx, pharmacies);
+        adapter = new PharmacyCardAdapter(instrumentationCtx, pharmacies);
     }
 
     @Test
