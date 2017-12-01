@@ -79,10 +79,10 @@ public class ListViewActivity extends AppCompatActivity implements AdapterView.O
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         PharmacyDetailFragment pdFragment = new PharmacyDetailFragment();
-        Pharmacy p = filterSentry ?  sentryPharmacies.get(position) : pharmacies.get(position);
+        Pharmacy p = (Pharmacy) parent.getAdapter().getItem(position);
         pdFragment.setPharmacy(p);
 
-        fragmentManager.beginTransaction().add(R.id.rootLayout, pdFragment).addToBackStack("detail").commit();
+        fragmentManager.beginTransaction().add(R.id.rootLayout, pdFragment,p.getTitle()).addToBackStack("detail").commit();
     }
 
     private Response.Listener<Pharmacy[]> createSuccessListener() {

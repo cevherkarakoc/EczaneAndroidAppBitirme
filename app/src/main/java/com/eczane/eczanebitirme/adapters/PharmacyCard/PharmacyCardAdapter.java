@@ -50,6 +50,10 @@ public class PharmacyCardAdapter extends BaseAdapter {
         return holder.getCard();
     }
 
+    public ArrayList<Pharmacy> getDataSet() {
+        return pharmacies;
+    }
+
     public void changeDataSet(ArrayList<Pharmacy> dataSet){
         pharmacies = dataSet;
         notifyDataSetChanged();
