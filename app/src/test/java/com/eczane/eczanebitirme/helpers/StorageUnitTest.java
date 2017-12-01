@@ -1,15 +1,12 @@
-package com.eczane.eczanebitirme.helpers.helpers;
+package com.eczane.eczanebitirme.helpers;
 
-import android.content.Context;
-import android.support.test.InstrumentationRegistry;
-import android.support.test.runner.AndroidJUnit4;
-
-import com.eczane.eczanebitirme.helpers.Storage;
 import com.eczane.eczanebitirme.models.SearchRecord;
 
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.robolectric.RobolectricTestRunner;
+import org.robolectric.RuntimeEnvironment;
 
 import java.util.ArrayList;
 
@@ -21,17 +18,14 @@ import static org.junit.Assert.assertThat;
  *
  * @author Cehver V. Karakoc
  */
-@RunWith(AndroidJUnit4.class)
+@RunWith(RobolectricTestRunner.class)
 public class StorageUnitTest{
     private final static String STORAGE_KEY = "TEST_STORAGE";
 
     private Storage testStorage;
-    private Context instrumentationCtx;
-
     @Before
     public void createStorage(){
-        instrumentationCtx = InstrumentationRegistry.getContext();
-        testStorage = new Storage(instrumentationCtx,STORAGE_KEY);
+        testStorage = new Storage(RuntimeEnvironment.application,STORAGE_KEY);
     }
 
     @Test
