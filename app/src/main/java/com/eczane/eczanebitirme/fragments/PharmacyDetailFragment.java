@@ -20,8 +20,6 @@ import java.util.Locale;
  */
 public class PharmacyDetailFragment extends Fragment implements View.OnClickListener {
     private Pharmacy pharmacy;
-    private Button pharCallButton;
-    private Button pharMapButton;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
