@@ -57,7 +57,7 @@ public class StorageUnitTest{
 
         ArrayList<SearchRecord> lastSearches = testStorage.getLastSearches();
 
-        assertThat(lastSearches.size(), is(3));
+        assertThat(lastSearches.size(), is(5));
     }
 
     @Test

@@ -4,10 +4,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:backgroundTint="@color/colorBackBrown"
     tools:context="com.eczane.eczanebitirme.activities.HomeActivity">
 
     <fragment
-        android:id="@+id/fragment"
+        android:id="@+id/fragment_search"
         android:name="com.eczane.eczanebitirme.fragments.SearchFragment"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -15,4 +16,15 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:layout="@layout/fragments_search" />
+
+    <fragment
+        android:id="@+id/fragment_last_searches"
+        android:name="com.eczane.eczanebitirme.fragments.LastSearchesFragment"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/fragment_search"
+        tools:layout="@layout/fragments_last_searches" />
 </android.support.constraint.ConstraintLayout>

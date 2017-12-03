@@ -11,4 +11,5 @@
     <string name="call">ara</string>
     <string name="phone_number">telefon</string>
     <string name="only_sentry">Sadece Nöbetçiler</string>
+    <string name="last_searches">Son Aramalar</string>
 </resources>

@@ -7,11 +7,6 @@ import com.eczane.eczanebitirme.models.SearchRecord;
 import com.google.gson.Gson;
 
 import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.LinkedHashSet;
-import java.util.Set;
-import java.util.SortedSet;
-import java.util.TreeSet;
 
 /**
  * A helper for SharedPreferences
@@ -48,7 +43,7 @@ public class Storage {
         newSearches.add(0,new SearchRecord(search));
 
         int lastIndex = newSearches.size() - 1;
-        if(lastIndex > 2) newSearches.remove(lastIndex);
+        if(lastIndex > 4) newSearches.remove(lastIndex);
 
 
 

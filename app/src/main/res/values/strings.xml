@@ -12,6 +12,7 @@
     <string name="call">Call</string>
     <string name="phone_number">phone</string>
     <string name="only_sentry">Only Sentry</string>
+    <string name="last_searches">Last Searches</string>
 
 
 </resources>
