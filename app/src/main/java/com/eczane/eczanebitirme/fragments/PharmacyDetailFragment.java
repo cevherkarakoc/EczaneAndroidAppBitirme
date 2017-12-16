@@ -12,6 +12,7 @@ import android.widget.TextView;
 
 import com.eczane.eczanebitirme.R;
 import com.eczane.eczanebitirme.models.Pharmacy;
+import com.willowtreeapps.spruce.animation.DefaultAnimations;
 
 import java.util.Locale;
 
@@ -70,5 +71,12 @@ public class PharmacyDetailFragment extends Fragment implements View.OnClickList
         );
         Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(uri));
         startActivity(intent);
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+
+        DefaultAnimations.shrinkAnimator(getView(),150).start();
     }
 }
