@@ -3,6 +3,7 @@ package com.eczane.eczanebitirme.helpers;
 import android.content.Context;
 import android.content.SharedPreferences;
 
+import com.eczane.eczanebitirme.models.Pharmacy;
 import com.eczane.eczanebitirme.models.SearchRecord;
 import com.google.gson.Gson;
 
@@ -15,6 +16,7 @@ import java.util.ArrayList;
  */
 public class Storage {
     private static final String LAST_SEARCHES = "last_searches";
+    private static final String CACHE = "cache";
 
     private SharedPreferences sharedPref;
     private Gson gson;
@@ -45,11 +47,23 @@ public class Storage {
         int lastIndex = newSearches.size() - 1;
         if(lastIndex > 4) newSearches.remove(lastIndex);
 
-
-
         SharedPreferences.Editor editor = sharedPref.edit();
         editor.putString(LAST_SEARCHES,gson.toJson(newSearches));
         editor.apply();
+    }
+
+    public void cachePharmancies(Pharmacy[] pharmacies){
+        SharedPreferences.Editor editor = sharedPref.edit();
+        editor.putString(CACHE,gson.toJson(pharmacies));
+        editor.apply();
+    }
+
+    public Pharmacy[] getPharmancies(){
+        String pharmaciesJson = sharedPref.getString(CACHE,null);
+        if(pharmaciesJson == null){
+            return new Pharmacy[]{};
+        }
+        return gson.fromJson(pharmaciesJson,Pharmacy[].class);
     }
 
 }

@@ -10,8 +10,6 @@ import com.eczane.eczanebitirme.R;
  */
 public class HomeActivity extends AppCompatActivity {
 
-    //TODO: Son 3 arama yatay kaydırmalı olarak gösterilecek
-    //TODO: Favori Eczaneler görüntülecenek
     //TODO: Konuma göre bulma eklenecek
 
     @Override

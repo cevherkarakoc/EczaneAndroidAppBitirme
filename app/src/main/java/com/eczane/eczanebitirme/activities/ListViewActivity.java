@@ -4,7 +4,6 @@ import android.app.FragmentManager;
 import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -19,6 +18,7 @@ import com.eczane.eczanebitirme.R;
 import com.eczane.eczanebitirme.adapters.PharmacyCard.PharmacyCardAdapter;
 import com.eczane.eczanebitirme.fragments.PharmacyDetailFragment;
 import com.eczane.eczanebitirme.helpers.HTTPRequest.RequestHandler;
+import com.eczane.eczanebitirme.helpers.Storage;
 import com.eczane.eczanebitirme.models.Pharmacy;
 
 import java.util.ArrayList;
@@ -31,6 +31,7 @@ public class ListViewActivity extends AppCompatActivity implements AdapterView.O
     private FragmentManager fragmentManager;
     private PharmacyCardAdapter adapter;
 
+    private Storage storage;
     private ArrayList<Pharmacy> pharmacies = new ArrayList<>();
     private ArrayList<Pharmacy> sentryPharmacies = new ArrayList<>();
 
@@ -45,6 +46,8 @@ public class ListViewActivity extends AppCompatActivity implements AdapterView.O
 
         colorMoon = ContextCompat.getColor(this, R.color.colorMoon);
         colorGrey = ContextCompat.getColor(this, R.color.colorGrey);
+
+        storage = new Storage(this,"Eczane");
 
         fetchPharmaciesList();
 
@@ -89,13 +92,8 @@ public class ListViewActivity extends AppCompatActivity implements AdapterView.O
         return new Response.Listener<Pharmacy[]>() {
             @Override
             public void onResponse(Pharmacy[] response) {
-                pharmacies.addAll(Arrays.asList(response));
-
-                for (Pharmacy pharmacy : pharmacies) {
-                    if(pharmacy.isSentry()) sentryPharmacies.add(pharmacy);
-                }
-
-                adapter.notifyDataSetChanged();
+                pushPharmaciesList(response);
+                storage.cachePharmancies(response);
             }
         };
     }
@@ -104,10 +102,21 @@ public class ListViewActivity extends AppCompatActivity implements AdapterView.O
         return new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                Log.e("REQ",error.getMessage());
-                Toast.makeText(ListViewActivity.this, "HATA",Toast.LENGTH_LONG).show();
+                pushPharmaciesList(storage.getPharmancies());
+
+                Toast.makeText(ListViewActivity.this, "Veriler Alınamadı.",Toast.LENGTH_LONG).show();
             }
         };
+    }
+
+    private void pushPharmaciesList(Pharmacy[] newPharmacies){
+        pharmacies.addAll(Arrays.asList(newPharmacies));
+
+        for (Pharmacy pharmacy : pharmacies) {
+            if(pharmacy.isSentry()) sentryPharmacies.add(pharmacy);
+        }
+
+        adapter.notifyDataSetChanged();
     }
 
     private void fetchPharmaciesList(){
