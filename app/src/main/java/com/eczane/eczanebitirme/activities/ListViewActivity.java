@@ -20,6 +20,7 @@ import com.eczane.eczanebitirme.fragments.PharmacyDetailFragment;
 import com.eczane.eczanebitirme.helpers.HTTPRequest.RequestHandler;
 import com.eczane.eczanebitirme.helpers.Storage;
 import com.eczane.eczanebitirme.models.Pharmacy;
+import com.wang.avi.AVLoadingIndicatorView;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -35,6 +36,9 @@ public class ListViewActivity extends AppCompatActivity implements AdapterView.O
     private ArrayList<Pharmacy> pharmacies = new ArrayList<>();
     private ArrayList<Pharmacy> sentryPharmacies = new ArrayList<>();
 
+    private ListView listView;
+    private AVLoadingIndicatorView loadingView;
+
     private boolean filterSentry = false;
     private int colorMoon;
     private int colorGrey;
@@ -46,6 +50,9 @@ public class ListViewActivity extends AppCompatActivity implements AdapterView.O
 
         colorMoon = ContextCompat.getColor(this, R.color.colorMoon);
         colorGrey = ContextCompat.getColor(this, R.color.colorGrey);
+
+        listView = (ListView) findViewById(R.id.phar_list);
+        loadingView = (AVLoadingIndicatorView) findViewById(R.id.list_loading);
 
         storage = new Storage(this,"Eczane");
 
@@ -115,8 +122,8 @@ public class ListViewActivity extends AppCompatActivity implements AdapterView.O
         for (Pharmacy pharmacy : pharmacies) {
             if(pharmacy.isSentry()) sentryPharmacies.add(pharmacy);
         }
-
         adapter.notifyDataSetChanged();
+        hideLoading();
     }
 
     private void fetchPharmaciesList(){
@@ -137,5 +144,16 @@ public class ListViewActivity extends AppCompatActivity implements AdapterView.O
         adapter.changeDataSet(filterSentry ? sentryPharmacies : pharmacies);
         sentryActionButton.getIcon().setTint(filterSentry ? colorMoon : colorGrey);
         sentryActionButton.setChecked(filterSentry);
+    }
+
+    private void hideLoading(){
+        loadingView.smoothToHide();
+
+        listView.setVisibility(View.VISIBLE);
+    }
+
+    private void showLoading(){
+        loadingView.smoothToShow();
+        listView.setVisibility(View.GONE);
     }
 }

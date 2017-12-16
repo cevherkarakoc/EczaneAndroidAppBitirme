@@ -43,4 +43,5 @@ dependencies {
     testImplementation 'org.robolectric:shadows-httpclient:3.5.1'
 
     implementation 'com.android.support:recyclerview-v7:25.3.1'
+    implementation 'com.wang.avi:library:2.1.3'
 }
