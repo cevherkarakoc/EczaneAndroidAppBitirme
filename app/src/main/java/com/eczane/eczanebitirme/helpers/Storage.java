@@ -8,6 +8,7 @@ import com.eczane.eczanebitirme.models.SearchRecord;
 import com.google.gson.Gson;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 /**
  * A helper for SharedPreferences
@@ -16,6 +17,7 @@ import java.util.ArrayList;
  */
 public class Storage {
     private static final String LAST_SEARCHES = "last_searches";
+    private static final String FAVORITES = "favorites";
     private static final String CACHE = "cache";
 
     private SharedPreferences sharedPref;
@@ -49,6 +51,39 @@ public class Storage {
 
         SharedPreferences.Editor editor = sharedPref.edit();
         editor.putString(LAST_SEARCHES,gson.toJson(newSearches));
+        editor.apply();
+    }
+
+    public HashMap<String, Pharmacy> getFavorites() {
+        String favoritesJson = sharedPref.getString(FAVORITES,null);
+
+        if(favoritesJson == null){
+            return new HashMap<>();
+        }
+        return gson.fromJson(favoritesJson,Typer.PHARMANCY_HASH_MAP);
+    }
+
+    public Pharmacy getFavoritesByKey(String key) {
+        HashMap favorites = getFavorites();
+
+        return (Pharmacy) favorites.get(key);
+    }
+
+    public void addFavorites(Pharmacy pharmacy) {
+        HashMap favorites = getFavorites();
+        favorites.put(""+pharmacy.getID(), pharmacy.clone());
+
+        SharedPreferences.Editor editor = sharedPref.edit();
+        editor.putString(FAVORITES,gson.toJson(favorites));
+        editor.apply();
+    }
+
+    public void removeFavorites(Pharmacy pharmacy) {
+        HashMap favorites = getFavorites();
+        favorites.remove(""+pharmacy.getID());
+
+        SharedPreferences.Editor editor = sharedPref.edit();
+        editor.putString(FAVORITES,gson.toJson(favorites));
         editor.apply();
     }
 

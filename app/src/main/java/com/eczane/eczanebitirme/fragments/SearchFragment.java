@@ -2,8 +2,11 @@ package com.eczane.eczanebitirme.fragments;
 
 import android.app.Fragment;
 import android.content.Intent;
+import android.location.Geocoder;
+import android.location.Location;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,16 +17,21 @@ import android.widget.TextView;
 
 import com.eczane.eczanebitirme.R;
 import com.eczane.eczanebitirme.activities.ListViewActivity;
+import com.eczane.eczanebitirme.helpers.PermissionsManager;
 import com.eczane.eczanebitirme.helpers.Storage;
-import com.eczane.eczanebitirme.models.SearchRecord;
+import com.google.android.gms.location.FusedLocationProviderClient;
+import com.google.android.gms.location.LocationServices;
+import com.google.android.gms.tasks.OnSuccessListener;
 
-import java.util.ArrayList;
+import java.util.Locale;
 
 /**
  * @author Cehver V. Karakoc
  */
 
 public class SearchFragment extends Fragment implements TextView.OnEditorActionListener, View.OnClickListener {
+    private FusedLocationProviderClient mFusedLocationClient;
+    Geocoder geocoder;
     private EditText editTextSearch;
     private Storage storage;
 
@@ -32,6 +40,9 @@ public class SearchFragment extends Fragment implements TextView.OnEditorActionL
         View view = inflater.inflate(R.layout.fragments_search, container, false);
 
         storage = new Storage(getActivity(),"Eczane");
+
+        mFusedLocationClient = LocationServices.getFusedLocationProviderClient(getActivity());
+        geocoder = new Geocoder(getActivity(), Locale.getDefault());
 
         return view;
     }
@@ -53,20 +64,40 @@ public class SearchFragment extends Fragment implements TextView.OnEditorActionL
     @Override
     public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
         if(actionId == EditorInfo.IME_ACTION_SEARCH) {
-            storage.addLastSearch(v.getText().toString());
-            ArrayList<SearchRecord> lastSearches = storage.getLastSearches();
+            String keyword = v.getText().toString();
+            storage.addLastSearch(keyword);
 
-            search();
+            search(keyword, 0,0);
             return true;
         }
         return false;
     }
 
-    private void findNearest(View view) {
-        search();
+    public void findNearest(@Nullable View view) {
+        if(PermissionsManager.checkLocationPermission(getActivity()))
+        {
+            mFusedLocationClient.getLastLocation()
+                    .addOnSuccessListener(getActivity(), new OnSuccessListener<Location>() {
+                        @Override
+                        public void onSuccess(Location location) {
+                            // Got last known location. In some rare situations this can be null.
+                            if (location != null) {
+                                search("localbase", location.getLatitude(), location.getLongitude());
+                            } else {
+                                Log.d("myLOCATION", "null");
+                            }
+                        }
+                    });
+        }
     }
-    private void search() {
+    private void search(String keyword, double lat, double lng) {
         Intent intent = new Intent(getActivity(), ListViewActivity.class);
+
+        Bundle bundle = new Bundle();
+        bundle.putString("keyword", keyword);
+        bundle.putDouble("lat", lat);
+        bundle.putDouble("lng", lng);
+        intent.putExtras(bundle);
 
         startActivity(intent);
     }

@@ -2,9 +2,13 @@
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/homeLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/colorBackBrown"
     android:backgroundTint="@color/colorBackBrown"
+    android:focusable="true"
+    android:focusableInTouchMode="true"
     tools:context="com.eczane.eczanebitirme.activities.HomeActivity">
 
     <fragment
@@ -18,13 +22,17 @@
         tools:layout="@layout/fragments_search" />
 
     <fragment
-        android:id="@+id/fragment_last_searches"
-        android:name="com.eczane.eczanebitirme.fragments.LastSearchesFragment"
+        android:id="@+id/fragment_favorites"
+        android:name="com.eczane.eczanebitirme.fragments.FavoritesListFragment"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
+        android:layout_marginBottom="8dp"
         android:layout_marginTop="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/fragment_search"
-        tools:layout="@layout/fragments_last_searches" />
+        tools:layout="@layout/fragments_favorites" />
+
+
 </android.support.constraint.ConstraintLayout>

@@ -12,6 +12,7 @@ import com.eczane.eczanebitirme.R;
 import com.eczane.eczanebitirme.models.Pharmacy;
 
 import java.util.ArrayList;
+import java.util.Locale;
 
 /**
  * Adapter for Pharmancy Cards
@@ -77,11 +78,18 @@ public class PharmacyCardAdapter extends BaseAdapter {
         holder.getTitle().setText(p.getTitle());
         holder.getZone().setText(p.getZoneAsString());
         holder.getPhone().setText(p.getPhone());
+        holder.getDist().setText(String.format(Locale.getDefault(),"%.1f", p.getDist())+" km");
 
         if(p.isSentry()) {
             holder.getSentry().setVisibility(View.VISIBLE);
         }else {
             holder.getSentry().setVisibility(View.INVISIBLE);
+        }
+
+        if(p.getDist() > 0) {
+            holder.getDist().setVisibility(View.VISIBLE);
+        }else {
+            holder.getDist().setVisibility(View.INVISIBLE);
         }
     }
 }

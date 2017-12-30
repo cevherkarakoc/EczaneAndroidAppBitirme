@@ -13,6 +13,7 @@ class PharCardHolder {
     private TextView title;
     private TextView zone;
     private TextView phone;
+    private TextView dist;
     private ImageView sentry;
     private View card;
 
@@ -21,6 +22,7 @@ class PharCardHolder {
         title = (TextView)v.findViewById(R.id.phar_title);
         zone = (TextView)v.findViewById(R.id.phar_zone);
         phone = (TextView)v.findViewById(R.id.phar_phone);
+        dist = (TextView)v.findViewById(R.id.phar_dist);
         sentry = (ImageView)v.findViewById(R.id.phar_sentry);
     }
 
@@ -38,6 +40,10 @@ class PharCardHolder {
 
     TextView getPhone() {
         return phone;
+    }
+
+    TextView getDist() {
+        return dist;
     }
 
     ImageView getSentry() {

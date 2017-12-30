@@ -11,6 +11,7 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.eczane.eczanebitirme.R;
+import com.eczane.eczanebitirme.helpers.Storage;
 import com.eczane.eczanebitirme.models.Pharmacy;
 import com.willowtreeapps.spruce.animation.DefaultAnimations;
 
@@ -21,10 +22,15 @@ import java.util.Locale;
  */
 public class PharmacyDetailFragment extends Fragment implements View.OnClickListener {
     private Pharmacy pharmacy;
+    private Storage storage;
+    Button pharFavButton;
+    private boolean isFav = false;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragments_pharmancy_detail, container, false);
+
+        storage = new Storage(getContext(), "Eczane");
 
         TextView pharTitle = (TextView) view.findViewById(R.id.pharTitle);
         TextView pharPhone = (TextView) view.findViewById(R.id.pharPhone);
@@ -32,7 +38,7 @@ public class PharmacyDetailFragment extends Fragment implements View.OnClickList
 
         Button pharCallButton = (Button) view.findViewById(R.id.pharCallButton);
         Button pharMapButton = (Button) view.findViewById(R.id.pharMapButton);
-
+        pharFavButton = (Button) view.findViewById(R.id.pharFavButton);
 
         pharTitle.setText(pharmacy.getTitle());
         pharPhone.setText(pharmacy.getPhone());
@@ -40,6 +46,12 @@ public class PharmacyDetailFragment extends Fragment implements View.OnClickList
 
         pharCallButton.setOnClickListener(this);
         pharMapButton.setOnClickListener(this);
+        pharFavButton.setOnClickListener(this);
+
+        if(storage.getFavoritesByKey(""+pharmacy.getID()) != null) {
+            isFav = true;
+        }
+        toggleFavButton();
 
         return view;
     }
@@ -53,6 +65,7 @@ public class PharmacyDetailFragment extends Fragment implements View.OnClickList
         switch (v.getId()){
             case (R.id.pharCallButton): startCall(); break;
             case (R.id.pharMapButton): openMap(); break;
+            case (R.id.pharFavButton): handleFavorites(); break;
             default: break;
         }
     }
@@ -71,6 +84,27 @@ public class PharmacyDetailFragment extends Fragment implements View.OnClickList
         );
         Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(uri));
         startActivity(intent);
+    }
+
+    private void handleFavorites() {
+        if(isFav) removeFavorites();
+        else addFavorites();
+
+        isFav = !isFav;
+        toggleFavButton();
+    }
+
+    private void removeFavorites(){
+        storage.removeFavorites(pharmacy);
+    }
+
+    private void addFavorites() {
+        storage.addFavorites(pharmacy);
+    }
+
+    private void toggleFavButton() {
+        if(isFav) pharFavButton.setText(R.string.remove_fav);
+        else pharFavButton.setText(R.string.add_fav);
     }
 
     @Override

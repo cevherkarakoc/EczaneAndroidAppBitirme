@@ -12,4 +12,8 @@
     <string name="phone_number">telefon</string>
     <string name="only_sentry">Sadece Nöbetçiler</string>
     <string name="last_searches">Son Aramalar</string>
+    <string name="add_fav">Favorilere Ekle</string>
+    <string name="remove_fav">Favorilerden Çıkar</string>
+    <string name="favorites">Favoriler</string>
+    <string name="no_favorites">Hiç Favori Yok</string>
 </resources>
